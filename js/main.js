@@ -79,6 +79,7 @@ function displayList() {
     }
 }    
 
+// It deletes list from local storage and displays the lists.
 function deleteList(e) {
   e = e || window.event;
 
@@ -101,6 +102,7 @@ function deleteListItems(e) {
 
   let toDoItems = localStorage.getItem("todolistItems");
   let objToDos = JSON.parse(toDoItems);
+  console.log(objToDos);
   let rightDivCode = document.getElementById(e.target.value);
 
   if(Object.hasOwn(objToDos, e.target.value)) {
