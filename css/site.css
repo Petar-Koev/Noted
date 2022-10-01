@@ -1,0 +1,111 @@
+body {
+    background-image: url(../imgs/Background.jpg) ;
+    font-family: 'Mate SC', serif;
+
+   }
+
+   #Maintitle {
+    text-align: center;
+    color: aliceblue;
+   }
+
+  
+  nav {
+    position: absolute !important; 
+    top: 0;
+    left: 0;
+  }
+
+  header {
+    margin-top: 70px;
+  }
+
+  #div-main {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+
+  }
+
+  #new-list {
+    text-align: center;
+  }
+
+  h2 {
+    color: aliceblue;
+  }
+
+  .content {
+    color: aliceblue;
+  }
+
+  .todo-lists {
+    margin-top: 20px;
+  }
+
+  /* 
+  -- Reported Bug -- 
+  -- input field overlaps the name on the right
+  */ 
+  
+  #lists {
+  width: 50%;
+  float:left;
+  }
+
+  #single-todos-list {
+    width: 50%;
+    float:left;
+    /*display: none; */
+  }
+
+  .single-todo-list {
+    color: aliceblue;
+  }
+
+  #list-name-h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  #lists-name-h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .add-btn-form {
+    margin-top: 20px;
+    float:right;
+  }
+  
+
+  .single-todo {
+    width: 50%;
+    float:left;
+    font-size: 16px;
+    text-align: left;
+  }
+
+  .single-todo-btns {
+    width: 50%;
+    float:left;
+    font-size: 16px;
+  }
+
+  .content {
+    width: 50%;
+    float:left;
+  }
+  
+  .actions {
+    width: 50%;
+    float:left;
+  }
+
+ 
+
+ 
+  
+
+
+

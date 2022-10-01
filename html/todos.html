@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href= "/css/bootstrap.css">
+    <link rel="stylesheet" href= "/css/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet">
+    <title>Petar Koev [To - Do's]</title>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-md bg-transperent navbar-dark ">
+        <!-- Brand -->
+        <a class="navbar-brand" href="/index.html">
+            <img src="/imgs/Logo.ico" width="40" height="40"/>
+        </a>
+      
+        <!-- Toggler/collapsible Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/html/todos.html">ToDo's</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    
+      <!-- Enter A To Do List! -->
+<div id="div-main">
+
+   <header class="container" >
+        <h1 id="Maintitle">Create your " To - Do " List </h1>
+        <form id="new-list">
+            <input type="text" id="new-list-input"
+            placeholder="What is this list about?"/>
+            <input type="submit" id="new-task-submit" value="Add list" />
+        </form>
+   </header> 
+
+<!-- ToDo Lists! -->
+   <main class="container">
+
+    <section class="todo-lists">
+
+        <div id="lists">
+          <h2 id="lists-name-h2">To - Do Lists:</h2>
+          <div id="all-lists">
+
+          </div>
+        </div>
+
+         <div id="single-todos-list">
+
+        </div> 
+
+    </section>
+
+   </main>
+
+  </div>
+
+    <script src="/jquery-3.6.0.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/main.js"></script>
+
+</body>
+</html>
