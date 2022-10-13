@@ -31,7 +31,7 @@ window.addEventListener('load', () => {
         openList();
 
     });
-       
+        
     displayList();
     
 })
@@ -161,8 +161,9 @@ function addToDoItemToList(e) {
   let targetedList = document.getElementById("list-name-h2").innerHTML;
   let toDoListItems = localStorage.getItem("todolistItems");
   let objOfItems = JSON.parse(toDoListItems);
+  let objToDoItem = {name:addToDo, isChecked: false};
  
-  objOfItems[`${targetedList}`].push(addToDo);
+  objOfItems[`${targetedList}`].push(objToDoItem);
   localStorage.setItem("todolistItems", JSON.stringify (objOfItems));
 
   displayToDoItems();
@@ -181,15 +182,35 @@ function displayToDoItems() {
       <ul class="list-of-todos">`;
 
   for(let i = 0; i < objOfItems[`${targetedList}`].length; i++) {
+
+    let lineThrough = ""; 
+
+    if(objOfItems[`${targetedList}`][i].isChecked == false) {
+      lineThrough = "none";
+      console.log("This is now checked with line through");
+      
+    } else {
+      lineThrough = "line-through";
+      console.log("This is now checked without line through");
+    }
+
+
     toDoStructure += `
           <li class="single-todo-list">
-              ${objOfItems[`${targetedList}`][i]}
+          <p id="${objOfItems[`${targetedList}`][i].name}" style="text-decoration: ${lineThrough}"> ${objOfItems[`${targetedList}`][i].name} </p>
               <div class="single-todo-btns">
-                    <button class="Chek">Check</button>
-                    <button class="delete-tds" value="${objOfItems[`${targetedList}`][i]}">Delete</button>
+                    <button 
+                      class="check-btn"
+                      value="${objOfItems[`${targetedList}`][i].name}"
+                    >Check</button>
+                    <button 
+                      class="delete-tds" 
+                      value="${objOfItems[`${targetedList}`][i].name}"
+                    >Delete</button>
               </div>
           </li>
     `;
+    
   }
 
   toDoStructure += `
@@ -198,6 +219,14 @@ function displayToDoItems() {
   `; 
 
   document.getElementById("temp-solution").innerHTML = toDoStructure;
+
+  let checkBtns = document.getElementsByClassName("check-btn");
+
+  for(let i = 0; i < checkBtns.length; i++) {
+    checkBtns[i].addEventListener("click", function(e) {
+      isChecked(e);
+    });
+  }
 
   let deleteToDoBtns = document.getElementsByClassName("delete-tds");
 
@@ -215,7 +244,7 @@ function deleteToDos(e) {
   let itemsFromLocalStorage = localStorage.getItem("todolistItems");
   let objOfItems = JSON.parse(itemsFromLocalStorage);
   let targetedList = document.getElementById("list-name-h2").innerHTML;
-  let index = objOfItems[`${targetedList}`].indexOf(e.target.value);
+  let index = objOfItems[`${targetedList}`].map(element => element.name).indexOf(e.target.value);
 
   if (index > -1) {
     objOfItems[`${targetedList}`].splice(index, 1);
@@ -225,5 +254,32 @@ function deleteToDos(e) {
   }
 
   displayToDoItems();
+
+}
+
+function isChecked(e) {
+  e = e || window.event;
+
+  let itemsFromLocalStorage = localStorage.getItem("todolistItems");
+  let objOfItems = JSON.parse(itemsFromLocalStorage);
+  let targetedList = document.getElementById("list-name-h2").innerHTML;
+  let index = objOfItems[`${targetedList}`].map(element => element.name).indexOf(e.target.value);
+  let selectedItem = objOfItems[`${targetedList}`][index];
+
+  if(selectedItem.isChecked == false) {
+    selectedItem.isChecked = true;
+    
+  } else {
+    selectedItem.isChecked = false;
+  }
+
+  localStorage.setItem("todolistItems", JSON.stringify(objOfItems));
+
+  displayToDoItems();
+
+  // let selectedText = document.getElementById(e.target.value);
+  // console.log(selectedText);
+
+
 
 }
