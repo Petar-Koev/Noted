@@ -1,34 +1,39 @@
-// It access the HTML part that we need.
+// stores items in Local Storage
 
 window.addEventListener('load', () => {
     let form = document.querySelector("#new-list");
     let input = document.querySelector("#new-list-input");
 
-    // When clicking submit, we stop the default event from happening
-    // In this case - refreshing the page!
-
     form.addEventListener("submit", (e) => {
         e.preventDefault();
-        let toDoLists = JSON.parse(localStorage.getItem('todolists')) || []; // Variable that gets a saved Item.
+        let toDoLists = JSON.parse(localStorage.getItem('todolists')) || [];
         let toDoListItems = JSON.parse(localStorage.getItem('todolistItems')) || {};
-        let list = input.value; // This is the input value
+        let list = input.value; 
 
         if (!list) {
           alert("Please fill out the name of the list!");
           return;
       }
+
+      for(let i = 0; i < toDoLists.length; i++) {
+
+        if(list == toDoLists[i]) {
+          alert("There list is already added");
+          return;
+        }
+      }
+
         toDoListItems[list] = [];
 
-        toDoLists.push(list); // This puts a new item in the local storage array ["todolists"]
-
-        localStorage.setItem("todolists", JSON.stringify(toDoLists)); // here we save the input in local storage
-
+        toDoLists.push(list); 
+        localStorage.setItem("todolists", JSON.stringify(toDoLists)); 
       
         localStorage.setItem("todolistItems", JSON.stringify(toDoListItems));
 
-        input.value = ""; // This clears the field after a list is being added!
+        input.value = ""; 
+
         displayList();
-        openList();
+        openList(); // creates empty space on the right side
 
     });
         
@@ -36,9 +41,13 @@ window.addEventListener('load', () => {
     
 })
 
+// creates HTML structure for the added lists
+// adds event listeners to the buttons
+
 function displayList() {
     let itemsFromLocalStorage = localStorage.getItem("todolists");
-    let arrayOfLists = JSON.parse(itemsFromLocalStorage); // It creates an array with the ToDoLists
+    let arrayOfLists = JSON.parse(itemsFromLocalStorage); 
+
     let listStructure = "";
 
     for(let i = 0; i <arrayOfLists.length; i++) {
@@ -79,7 +88,8 @@ function displayList() {
     }
 }    
 
-// It deletes list from local storage and displays the lists.
+// removes a specific ToDo List from "todolists"
+
 function deleteList(e) {
   e = e || window.event;
 
@@ -97,12 +107,13 @@ function deleteList(e) {
 
 }
 
+// removes a specific ToDo List from "todolistItems"
+
 function deleteListItems(e) {
   e = e || window.event;
 
   let toDoItems = localStorage.getItem("todolistItems");
   let objToDos = JSON.parse(toDoItems);
-  console.log(objToDos);
   let rightDivCode = document.getElementById(e.target.value);
 
   if(Object.hasOwn(objToDos, e.target.value)) {
@@ -111,6 +122,10 @@ function deleteListItems(e) {
     rightDivCode.remove();
   }
 }
+
+// checks for stored lists in Local Storage
+// adds HTML structure for the opened list
+// adds event listener to the button
 
 function openList(e) {
   e = e || window.event;
@@ -133,7 +148,6 @@ function openList(e) {
           </div>
        </div>
   `;
-
   }
 
   document.getElementById("single-todos-list").innerHTML = toDosAddBtn;
@@ -147,8 +161,10 @@ function openList(e) {
     addToDoItemToList(e);
 
   });
-
 }
+
+// checks for empty input and duplicates
+// stores items in Local Storage as objects
 
 function addToDoItemToList(e) {
   let addToDo = document.getElementById("new-todo-input").value;
@@ -162,6 +178,15 @@ function addToDoItemToList(e) {
   let toDoListItems = localStorage.getItem("todolistItems");
   let objOfItems = JSON.parse(toDoListItems);
   let objToDoItem = {name:addToDo, isChecked: false};
+
+  for(let i = 0; i < objOfItems[`${targetedList}`].length; i++){
+
+    if(objOfItems[`${targetedList}`][i].name == addToDo) {
+      alert("This item is already added");
+      document.getElementById("new-todo-input").value = "";
+      return;
+    }
+  }
  
   objOfItems[`${targetedList}`].push(objToDoItem);
   localStorage.setItem("todolistItems", JSON.stringify (objOfItems));
@@ -170,7 +195,7 @@ function addToDoItemToList(e) {
     
   document.getElementById("new-todo-input").value = "";
 
-}
+} 
 
 function displayToDoItems() {
   let targetedList = document.getElementById("list-name-h2").innerHTML;
@@ -184,29 +209,26 @@ function displayToDoItems() {
   for(let i = 0; i < objOfItems[`${targetedList}`].length; i++) {
 
     let lineThrough = ""; 
+    let checkedIcon = "";
 
     if(objOfItems[`${targetedList}`][i].isChecked == false) {
       lineThrough = "none";
-      console.log("This is now checked with line through");
+      checkedIcon = "fa-check";
       
     } else {
       lineThrough = "line-through";
-      console.log("This is now checked without line through");
+      checkedIcon = "fa-check-double";
+     
     }
-
 
     toDoStructure += `
           <li class="single-todo-list">
           <p id="${objOfItems[`${targetedList}`][i].name}" style="text-decoration: ${lineThrough}"> ${objOfItems[`${targetedList}`][i].name} </p>
               <div class="single-todo-btns">
-                    <button 
-                      class="check-btn"
-                      value="${objOfItems[`${targetedList}`][i].name}"
-                    >Check</button>
-                    <button 
-                      class="delete-tds" 
-                      value="${objOfItems[`${targetedList}`][i].name}"
-                    >Delete</button>
+                    <i class="fa-solid ${checkedIcon} check-btn" 
+                       checkItem="${objOfItems[`${targetedList}`][i].name}"></i>
+                    <i class="fa-solid fa-trash delete-tds"
+                    deleteItem="${objOfItems[`${targetedList}`][i].name}"></i>
               </div>
           </li>
     `;
@@ -221,6 +243,7 @@ function displayToDoItems() {
   document.getElementById("temp-solution").innerHTML = toDoStructure;
 
   let checkBtns = document.getElementsByClassName("check-btn");
+  console.log(checkBtns);
 
   for(let i = 0; i < checkBtns.length; i++) {
     checkBtns[i].addEventListener("click", function(e) {
@@ -238,13 +261,17 @@ function displayToDoItems() {
   }
 }
 
+// removes an item from "todolistItems"
+// sets the updated version in Local Storage
+
 function deleteToDos(e) {
   e = e || window.event;
 
+  let deleteItem = e.target.getAttribute("deleteItem");
   let itemsFromLocalStorage = localStorage.getItem("todolistItems");
   let objOfItems = JSON.parse(itemsFromLocalStorage);
   let targetedList = document.getElementById("list-name-h2").innerHTML;
-  let index = objOfItems[`${targetedList}`].map(element => element.name).indexOf(e.target.value);
+  let index = objOfItems[`${targetedList}`].map(element => element.name).indexOf(deleteItem);
 
   if (index > -1) {
     objOfItems[`${targetedList}`].splice(index, 1);
@@ -257,14 +284,19 @@ function deleteToDos(e) {
 
 }
 
+// triggered on the check button click
+
 function isChecked(e) {
   e = e || window.event;
 
+  let checkItem = e.target.getAttribute("checkItem");
   let itemsFromLocalStorage = localStorage.getItem("todolistItems");
   let objOfItems = JSON.parse(itemsFromLocalStorage);
   let targetedList = document.getElementById("list-name-h2").innerHTML;
-  let index = objOfItems[`${targetedList}`].map(element => element.name).indexOf(e.target.value);
+  let index = objOfItems[`${targetedList}`].map(element => element.name).indexOf(checkItem);
   let selectedItem = objOfItems[`${targetedList}`][index];
+
+  console.log(selectedItem);
 
   if(selectedItem.isChecked == false) {
     selectedItem.isChecked = true;
@@ -276,10 +308,5 @@ function isChecked(e) {
   localStorage.setItem("todolistItems", JSON.stringify(objOfItems));
 
   displayToDoItems();
-
-  // let selectedText = document.getElementById(e.target.value);
-  // console.log(selectedText);
-
-
 
 }
