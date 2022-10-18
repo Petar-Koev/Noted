@@ -1,14 +1,12 @@
 body {
     background-image: url(../imgs/Background.jpg);
     font-family: 'Mate SC', serif;
-
    }
 
    #Maintitle {
     text-align: center;
     color: aliceblue;
    }
-
   
   nav {
     position: absolute !important; 
@@ -24,7 +22,6 @@ body {
     width: 70%;
     margin-left: auto;
     margin-right: auto;
-
   }
 
   #new-list {
@@ -42,11 +39,6 @@ body {
   .todo-lists {
     margin-top: 20px;
   }
-
-  /* 
-  -- Reported Bug -- 
-  -- input field overlaps the name on the right
-  */ 
   
   #lists {
   width: 50%;
@@ -56,11 +48,44 @@ body {
   #single-todos-list {
     width: 50%;
     float:left;
-    /*display: none; */
   }
+
+  #new-list-input {
+    width:35%;
+    color: aliceblue;
+    background: rgba(12, 3, 0, 0.8);
+    border-radius: 10px;
+    font-size: 1.30rem;
+    padding: 5px;
+    border-style: solid;
+    border-color:rgba(12, 3, 0, 1); ;
+  }
+
+  ::placeholder {
+    opacity: .4;
+    
+  }
+
+ 
+  
 
   .single-todo-list {
     color: aliceblue;
+    display: block;
+    margin:10px;
+    background: rgba(12, 3, 0, 0.6);
+    border-radius: 15px;
+    padding: 15px;
+  }
+
+  #new-task-submit {
+    width:15%;
+    color: aliceblue;
+    background: rgba(12, 3, 0, 0.8);
+    border-radius: 15px;
+    font-size: 1.30rem;
+    padding: 2px;
+
   }
 
   #list-name-h2 {
@@ -78,7 +103,6 @@ body {
     float:right;
   }
   
-
   .single-todo {
     width: 50%;
     float:left;
@@ -87,20 +111,27 @@ body {
   }
 
   .single-todo-btns {
-    width: 50%;
-    float:left;
-    font-size: 16px;
+    display: inline;
+    float: right;
+  
   }
 
   .content {
     width: 50%;
     float:left;
+
   }
   
   .actions {
     width: 50%;
     float:left;
   }
+
+  .single-todo-name {
+    display: inline;
+  }
+
+
 
  
 
