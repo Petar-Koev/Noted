@@ -65,10 +65,7 @@ body {
     opacity: .4;
     
   }
-
  
-  
-
   .single-todo-list {
     color: aliceblue;
     display: block;
@@ -117,19 +114,164 @@ body {
   }
 
   .content {
-    width: 50%;
-    float:left;
+    display: inline-block;
 
   }
   
   .actions {
-    width: 50%;
-    float:left;
+    display: inline-block;
+    float: right;
+  
+  }
+
+  .text {
+    margin:5px;
+    padding: 5px
   }
 
   .single-todo-name {
     display: inline;
   }
+
+  #new-todo-input {
+    width:60%;
+    color: aliceblue;
+    background: rgba(12, 3, 0, 0.8);
+    border-radius: 10px;
+    font-size: 1.10rem;
+    padding: 5px;
+    border-style: solid;
+    border-color:rgba(12, 3, 0, 1); ;
+  }
+
+  #new-todo-submit {
+    width: 30%;
+    color: aliceblue;
+    background: rgba(12, 3, 0, 0.8);
+    border-radius: 1px;
+    font-size: 1.10rem;
+    padding: 2px;
+  }
+
+
+  .list {
+    display: block;
+    padding: 10px;
+    color: aliceblue;
+    background: rgba(12, 3, 0, 0.6);
+    border-radius: 10px;
+    margin: 10px;
+    width: 70%;
+    font-size: 1.1em;
+
+
+  }
+
+  .open {
+    background: rgba(12, 3, 0, 0.8);
+    color: aliceblue;
+    border-radius: 1px;
+    padding: 5px;
+    margin:5px;
+    width: auto;
+    height: auto;
+    
+  }
+
+  .delete {
+    background: rgba(12, 3, 0, 0.8);
+    color: aliceblue;
+    border-radius: 1px;
+    padding: 5px;
+    margin: 5px;
+    width: auto;
+    height: auto;
+  }
+
+  #new-todo {
+    margin-bottom: 30px;
+  }
+
+  .delete-tds {
+    padding-left: 12px;
+
+  }
+
+  @media only screen and (max-width: 1150px) {
+    .actions {
+      display: block;
+      float: none;
+      width: auto;
+    }
+
+  }
+
+  @media only screen and (max-width: 768px) {
+    .actions {
+      display: block;
+      float: none;
+      width: auto;
+    }
+
+    .single-todo-btns {
+      display: block;
+      float: none;
+      width: auto;
+    }
+
+    .list-of-todos {
+      display: contents;
+    }
+
+    #new-task-submit {
+      display: block;
+      width: auto;
+      margin: 15px;
+    
+    }
+
+    #new-list-input {
+      display: block;
+      width: auto;
+      margin: 15px;
+    }
+
+    #new-todo-submit {
+      display: block;
+      width: auto;
+      margin: 10px;
+
+    }
+
+    #new-todo-input {
+      display: block;
+      width: auto;
+      margin: 10px;
+
+    }
+
+    #single-todos-list {
+      width: auto;
+      display: block;
+      float: left;
+      
+    }
+
+    #lists {
+      width: auto;
+      display: block;
+      float: left;
+    }
+
+    #list-name-h2 {
+      text-align: left;
+    }
+
+
+  }
+
+
+  
 
 
 

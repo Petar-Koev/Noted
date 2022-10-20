@@ -57,7 +57,10 @@ function displayList() {
        listStructure += `
         <div class="list" id="list-${arrayOfLists[i]}">
           <div class="content">
-            <input type="text" class="text" value="${arrayOfLists[i]}" readonly />
+            <p class="text"
+               value="${arrayOfLists[i]}">
+               ${arrayOfLists[i]}
+            </p>
           </div>
           <div class="actions">
             <button class="open" value="${arrayOfLists[i]}">Open</button>
