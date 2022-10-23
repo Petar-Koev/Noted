@@ -119,7 +119,10 @@ body {
   }
   
   .actions {
+<<<<<<< Updated upstream
     display: inline-block;
+=======
+>>>>>>> Stashed changes
     float: right;
   
   }
