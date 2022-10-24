@@ -32,10 +32,6 @@ body {
     color: aliceblue;
   }
 
-  .content {
-    color: aliceblue;
-  }
-
   .todo-lists {
     margin-top: 20px;
   }
@@ -63,7 +59,6 @@ body {
 
   ::placeholder {
     opacity: .4;
-    
   }
  
   .single-todo-list {
@@ -82,11 +77,10 @@ body {
     border-radius: 15px;
     font-size: 1.30rem;
     padding: 2px;
-
   }
 
   #list-name-h2 {
-    text-align: center;
+    text-align: right;
     margin-bottom: 20px;
   }
 
@@ -100,22 +94,14 @@ body {
     float:right;
   }
   
-  .single-todo {
-    width: 50%;
-    float:left;
-    font-size: 16px;
-    text-align: left;
-  }
-
   .single-todo-btns {
     display: inline;
     float: right;
-  
   }
 
   .content {
     display: inline-block;
-
+    color: aliceblue;
   }
   
   .actions {
@@ -151,7 +137,6 @@ body {
     padding: 2px;
   }
 
-
   .list {
     display: block;
     padding: 10px;
@@ -161,8 +146,6 @@ body {
     margin: 10px;
     width: 70%;
     font-size: 1.1em;
-
-
   }
 
   .open {
@@ -173,7 +156,6 @@ body {
     margin:5px;
     width: auto;
     height: auto;
-    
   }
 
   .delete {
@@ -192,19 +174,9 @@ body {
 
   .delete-tds {
     padding-left: 12px;
-
   }
 
   @media only screen and (max-width: 1150px) {
-    .actions {
-      display: block;
-      float: none;
-      width: auto;
-    }
-
-  }
-
-  @media only screen and (max-width: 768px) {
     .actions {
       display: block;
       float: none;
@@ -216,7 +188,9 @@ body {
       float: none;
       width: auto;
     }
+  }
 
+  @media only screen and (max-width: 768px) {
     .list-of-todos {
       display: contents;
     }
@@ -225,7 +199,6 @@ body {
       display: block;
       width: auto;
       margin: 15px;
-    
     }
 
     #new-list-input {
@@ -238,21 +211,18 @@ body {
       display: block;
       width: auto;
       margin: 10px;
-
     }
 
     #new-todo-input {
       display: block;
       width: auto;
       margin: 10px;
-
     }
 
     #single-todos-list {
       width: auto;
       display: block;
       float: left;
-      
     }
 
     #lists {
@@ -260,23 +230,4 @@ body {
       display: block;
       float: left;
     }
-
-    #list-name-h2 {
-      text-align: left;
-    }
-
-
   }
-
-
-  
-
-
-
- 
-
- 
-  
-
-
-
